@@ -32,9 +32,59 @@ class Scanner:
         return t
     
     # identificar números inteiros
-    def t_INT(self, t):
+    def t_INT_LITERAL(self, t):
         r'\d+'
         t.value = int(t.value)
         return t
 
+    # Print caractere e tokens analisados
+    def printTokens(self):
+        while True:
+            tok = self.lexer.token()
+            if not tok: break
+            print(tok)
 
+    def t_error(self, t):
+        print("Illegal character '%s'" % t.value[0])
+        t.lexer.skip(1)
+
+    # Regular expression rules for simple tokens
+    t_PLUS = r'\+'
+    t_MINUS = r'-'
+    t_TIMES = r'\*'
+    t_DIVIDE = r'/'
+    t_EQUAL = r'='
+    t_EQUALS = r'=='
+    t_NOT_EQUALS = r'!='
+    t_LESS_THAN = r'<'
+    t_LESS_THAN_OR_EQUAL = r'<='
+    t_GREATER_THAN = r'>'
+    t_GREATER_THAN_OR_EQUAL = r'>='
+    t_AND = r'&&'
+    t_OR = r'\|\|'
+    t_NOT = r'!'
+    t_LPAREN = r'\('
+    t_RPAREN = r'\)'
+    t_LBRACE = r'\{'
+    t_RBRACE = r'\}'
+    t_LSQUARE = r'\['
+    t_RSQUARE = r'\]'
+    t_COMMA = r','
+    t_SEMICOLON = r';'
+    t_DOT = r'\.'
+    # t_IF = r'if'
+    # t_ELSE = r'else'
+    # t_WHILE = r'while'
+    # t_FOR = r'for'
+    # t_RETURN = r'return'
+    # t_PUBLIC = r'public'
+    # t_PRIVATE = r'private'
+    # t_STATIC = r'static'
+    # t_VOID = r'void'
+    # t_MAIN = r'main'
+    # t_CLASS = r'class'
+    # t_EXTENDS = r'extends'
+    # t_THIS = r'this'
+    # t_NEW = r'new'
+    # t_TRUE = r'true'
+    # t_FALSE = r'false'

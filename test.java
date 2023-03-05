@@ -7,6 +7,8 @@
 //     }
 // }
 
-class Test{
+int a = 1;      
+
+public class Test{
     int a;
 }

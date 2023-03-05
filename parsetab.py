@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABSTRACT AND AND_ASSIGN ARROW ASSERT ASSIGN AT BACKSPACE BELL BITWISE_AND BITWISE_COMPLEMENT BITWISE_NOT BITWISE_OR BITWISE_XOR BOOLEAN BREAK BYTE CARRIAGE_RETURN CASE CATCH CHAR CHARACTER CLASS COLON COMMA COMMENT CONST CONTINUE DECREMENT DEFAULT DIVIDE DIVIDE_ASSIGN DO DOT DOUBLE DOUBLE_COLON ELLIPSIS ELSE ENUM EOF EQ EQ_ASSIGN ERROR ESCAPE EXTENDS FALSE FINAL FINALLY FLOAT FOR FORM_FEED GE GOTO GT ID IF IMPLEMENTS IMPORT INCREMENT INSTANCEOF INT INTEGER INTERFACE LAMBDA LBRACE LBRACKET LE LEFT_SHIFT LEFT_SHIFT_ASSIGN LENGTH LINE_COMMENT LONG LPAREN LT MINUS MINUS_ASSIGN MINUS_MINUS MOD MOD_ASSIGN NATIVE NE NEW NEWLINE NON_SEALED NOT NULL OR OR_ASSIGN OUT PACKAGE PERMITS PLUS PLUS_ASSIGN PLUS_PLUS PRINTLN PRIVATE PROTECTED PUBLIC QUESTION_MARK RBRACE RBRACKET RECORD RETURN RIGHT_SHIFT RIGHT_SHIFT_ASSIGN RIGHT_SHIFT_UNSIGNED RIGHT_SHIFT_UNSIGNED_ASSIGN RPAREN SEALED SEMICOLON SHORT SPACE STATIC STRICTFP STRING SUPER SWITCH SYNCHRONIZED SYSTEM TAB THIS THROW THROWS TILDE TIMES TIMES_ASSIGN TRANSIENT TRUE TRY TYPE UNDERSCORE UNSIGNED_RIGHT_SHIFT UNSIGNED_RIGHT_SHIFT_ASSIGN VAR VERTICAL_TAB VOID VOLATILE WHILE XOR XOR_ASSIGN YIELDprogram : class_decl_listclass_decl_list : class_decl class_decl_list\n                           | class_decl\n            class_decl : CLASS ID EXTENDS ID LBRACE class_body RBRACE\n                       | CLASS ID LBRACE class_body RBRACE\n        class_body : class_body class_member\n                      | class_memberclass_member : var_decl\n                        var_decl : type ID SEMICOLONvar_decl_list : var_decl_list var_decl\n                         | emptytype : LBRACKET INT RBRACKET\n                | INT\n                | BOOLEAN\n                | IDempty :'
+_lr_signature = 'AND BOOLEAN BOOLEAN_LITERAL CLASS COMMA DIVIDE DOT ELSE EQUAL EQUALS EXTENDS FALSE FOR GREATER_THAN GREATER_THAN_OR_EQUAL ID IF IMPORT INT INT_LITERAL LBRACE LESS_THAN LESS_THAN_OR_EQUAL LPAREN LSQUARE MAIN MINUS NEW NOT NOT_EQUALS OR OUT PLUS PRINTLN PRIVATE PUBLIC RBRACE RETURN RPAREN RSQUARE SEMICOLON STATIC STRING STRING_LITERAL SYSTEM THIS TIMES TRUE VOID WHILE\n            program : body_program\n        \n            body_program : class_decl body_program\n                | import_decl body_program\n                | var_decl body_program\n                | empty\n        \n            class_decl : CLASS ID EXTENDS ID LBRACE body RBRACE\n                | CLASS ID LBRACE body RBRACE\n        \n            import_decl : IMPORT ID DOT ID SEMICOLON\n        \n            var_decl : type ID SEMICOLON\n                | type ID EQUAL expr SEMICOLON\n        \n            method_decl : type ID LPAREN params RPAREN LBRACE body RBRACE\n        \n            params : type ID\n                | type ID COMMA params\n                | empty\n        \n            body : var_decl body\n                | method_decl body\n                | statement body\n                | empty\n        \n            type : INT\n                | BOOLEAN\n                | STRING\n                | ID\n                | type LSQUARE RSQUARE\n        \n            expr : expr PLUS term\n                | expr MINUS term\n                | term\n        \n            term : term TIMES factor\n                | term DIVIDE factor\n                | factor\n        \n            factor : MINUS factor\n                | NOT factor\n                | INT_LITERAL\n                | BOOLEAN_LITERAL\n                | STRING_LITERAL\n                | ID\n                | ID LSQUARE expr RSQUARE\n                | ID DOT ID\n                | ID DOT ID LPAREN args RPAREN\n                | ID LPAREN args RPAREN\n                | NEW ID LPAREN RPAREN\n                | NEW INT LSQUARE expr RSQUARE\n                | LPAREN expr RPAREN\n        \n            args : expr\n                | expr COMMA args\n                | empty\n        \n            statement : LBRACE body RBRACE\n                | IF LPAREN expr RPAREN statement ELSE statement\n                | IF LPAREN expr RPAREN statement\n                | WHILE LPAREN expr RPAREN statement\n                | SYSTEM DOT OUT DOT PRINTLN LPAREN expr RPAREN SEMICOLON\n                | ID EQUALS expr SEMICOLON\n                | ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON\n        empty :'
     
-_lr_action_items = {'CLASS':([0,3,19,26,],[4,4,-5,-4,]),'$end':([1,2,3,5,19,26,],[0,-1,-3,-2,-5,-4,]),'ID':([4,7,8,10,11,12,13,14,16,17,18,20,23,24,25,],[6,9,10,-15,10,-7,-8,21,-13,-14,10,-6,10,-9,-12,]),'EXTENDS':([6,],[7,]),'LBRACE':([6,9,],[8,18,]),'LBRACKET':([8,11,12,13,18,20,23,24,],[15,15,-7,-8,15,-6,15,-9,]),'INT':([8,11,12,13,15,18,20,23,24,],[16,16,-7,-8,22,16,-6,16,-9,]),'BOOLEAN':([8,11,12,13,18,20,23,24,],[17,17,-7,-8,17,-6,17,-9,]),'RBRACE':([11,12,13,20,23,24,],[19,-7,-8,-6,26,-9,]),'SEMICOLON':([21,],[24,]),'RBRACKET':([22,],[25,]),}
+_lr_action_items = {'CLASS':([0,3,4,5,24,55,63,67,97,],[7,7,7,7,-9,-7,-8,-10,-6,]),'IMPORT':([0,3,4,5,24,55,63,67,97,],[9,9,9,9,-9,-7,-8,-10,-6,]),'$end':([0,1,2,3,4,5,6,14,15,16,24,55,63,67,97,],[-53,0,-1,-53,-53,-53,-5,-2,-3,-4,-9,-7,-8,-10,-6,]),'INT':([0,3,4,5,22,24,29,31,32,33,50,51,55,63,67,80,81,97,98,115,117,123,124,128,131,133,135,],[11,11,11,11,11,-9,11,11,11,11,76,11,-7,-8,-10,-46,11,-6,-51,-48,-49,11,11,-52,-47,-11,-50,]),'BOOLEAN':([0,3,4,5,22,24,29,31,32,33,51,55,63,67,80,81,97,98,115,117,123,124,128,131,133,135,],[12,12,12,12,12,-9,12,12,12,12,12,-7,-8,-10,-46,12,-6,-51,-48,-49,12,12,-52,-47,-11,-50,]),'STRING':([0,3,4,5,22,24,29,31,32,33,51,55,63,67,80,81,97,98,115,117,123,124,128,131,133,135,],[13,13,13,13,13,-9,13,13,13,13,13,-7,-8,-10,-46,13,-6,-51,-48,-49,13,13,-52,-47,-11,-50,]),'ID':([0,3,4,5,7,8,9,10,11,12,13,21,22,23,24,25,26,28,29,31,32,33,35,43,45,49,50,51,52,53,55,60,61,63,64,65,66,67,68,69,70,71,80,81,96,97,98,100,103,104,107,109,112,115,117,123,124,125,126,128,131,133,135,],[8,8,8,8,17,-22,18,19,-19,-20,-21,27,28,39,-9,40,-23,-22,28,28,28,28,59,40,40,40,75,28,40,40,-7,40,40,-8,40,86,40,-10,40,40,40,40,-46,8,40,-6,-51,113,116,116,40,40,40,-48,-49,8,28,116,40,-52,-47,-11,-50,]),'LSQUARE':([8,10,11,12,13,26,28,35,40,76,100,116,],[-22,20,-19,-20,-21,-23,53,20,64,96,20,53,]),'EXTENDS':([17,],[21,]),'LBRACE':([17,22,24,27,29,31,32,33,51,67,80,98,103,104,114,115,117,124,125,128,131,133,135,],[22,29,-9,51,29,29,29,29,29,-10,-46,-51,29,29,124,-48,-49,29,29,-52,-47,-11,-50,]),'DOT':([18,38,40,84,],[23,62,65,105,]),'SEMICOLON':([19,39,40,41,42,44,46,47,48,59,72,73,78,86,90,91,92,93,94,106,108,110,121,122,127,134,],[24,63,-35,67,-26,-29,-32,-33,-34,24,-30,-31,98,-37,-24,-25,-27,-28,-42,-36,-39,-40,-41,128,-38,135,]),'EQUAL':([19,59,],[25,25,]),'RSQUARE':([20,40,42,44,46,47,48,72,73,79,85,86,90,91,92,93,94,106,108,110,111,121,127,],[26,-35,-26,-29,-32,-33,-34,-30,-31,99,106,-37,-24,-25,-27,-28,-42,-36,-39,-40,121,-41,-38,]),'IF':([22,24,29,31,32,33,51,67,80,98,103,104,115,117,124,125,128,131,133,135,],[36,-9,36,36,36,36,36,-10,-46,-51,36,36,-48,-49,36,36,-52,-47,-11,-50,]),'WHILE':([22,24,29,31,32,33,51,67,80,98,103,104,115,117,124,125,128,131,133,135,],[37,-9,37,37,37,37,37,-10,-46,-51,37,37,-48,-49,37,37,-52,-47,-11,-50,]),'SYSTEM':([22,24,29,31,32,33,51,67,80,98,103,104,115,117,124,125,128,131,133,135,],[38,-9,38,38,38,38,38,-10,-46,-51,38,38,-48,-49,38,38,-52,-47,-11,-50,]),'RBRACE':([22,24,29,30,31,32,33,34,51,54,56,57,58,67,77,80,98,115,117,124,128,130,131,133,135,],[-53,-9,-53,55,-53,-53,-53,-18,-53,80,-15,-16,-17,-10,97,-46,-51,-48,-49,-53,-52,133,-47,-11,-50,]),'MINUS':([25,40,41,42,43,44,45,46,47,48,49,52,53,60,61,64,66,68,69,70,71,72,73,74,78,79,82,83,85,86,88,90,91,92,93,94,96,106,107,108,109,110,111,112,121,122,126,127,132,],[43,-35,69,-26,43,-29,43,-32,-33,-34,43,43,43,43,43,43,43,43,43,43,43,-30,-31,69,69,69,69,69,69,-37,69,-24,-25,-27,-28,-42,43,-36,43,-39,43,-40,69,43,-41,69,43,-38,69,]),'NOT':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,]),'INT_LITERAL':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,]),'BOOLEAN_LITERAL':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,]),'STRING_LITERAL':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,]),'NEW':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,]),'LPAREN':([25,36,37,40,43,45,49,52,53,59,60,61,64,66,68,69,70,71,75,86,96,107,109,112,118,126,],[49,60,61,66,49,49,49,49,49,81,49,49,49,49,49,49,49,49,95,107,49,49,49,49,126,49,]),'EQUALS':([28,99,116,],[52,112,52,]),'TIMES':([40,42,44,46,47,48,72,73,86,90,91,92,93,94,106,108,110,121,127,],[-35,70,-29,-32,-33,-34,-30,-31,-37,70,70,-27,-28,-42,-36,-39,-40,-41,-38,]),'DIVIDE':([40,42,44,46,47,48,72,73,86,90,91,92,93,94,106,108,110,121,127,],[-35,71,-29,-32,-33,-34,-30,-31,-37,71,71,-27,-28,-42,-36,-39,-40,-41,-38,]),'PLUS':([40,41,42,44,46,47,48,72,73,74,78,79,82,83,85,86,88,90,91,92,93,94,106,108,110,111,121,122,127,132,],[-35,68,-26,-29,-32,-33,-34,-30,-31,68,68,68,68,68,68,-37,68,-24,-25,-27,-28,-42,-36,-39,-40,68,-41,68,-38,68,]),'RPAREN':([40,42,44,46,47,48,66,72,73,74,81,82,83,86,87,88,89,90,91,92,93,94,95,101,102,106,107,108,109,110,113,119,120,121,123,127,129,132,],[-35,-26,-29,-32,-33,-34,-53,-30,-31,94,-53,103,104,-37,108,-43,-45,-24,-25,-27,-28,-42,110,114,-14,-36,-53,-39,-53,-40,-12,127,-44,-41,-53,-38,-13,134,]),'COMMA':([40,42,44,46,47,48,72,73,86,88,90,91,92,93,94,106,108,110,113,121,127,],[-35,-26,-29,-32,-33,-34,-30,-31,-37,109,-24,-25,-27,-28,-42,-36,-39,-40,123,-41,-38,]),'OUT':([62,],[84,]),'ELSE':([80,98,115,117,128,131,135,],[-46,-51,125,-49,-52,-47,-50,]),'PRINTLN':([105,],[118,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'class_decl_list':([0,3,],[2,5,]),'class_decl':([0,3,],[3,3,]),'class_body':([8,18,],[11,23,]),'class_member':([8,11,18,23,],[12,20,12,20,]),'var_decl':([8,11,18,23,],[13,13,13,13,]),'type':([8,11,18,23,],[14,14,14,14,]),}
+_lr_goto_items = {'program':([0,],[1,]),'body_program':([0,3,4,5,],[2,14,15,16,]),'class_decl':([0,3,4,5,],[3,3,3,3,]),'import_decl':([0,3,4,5,],[4,4,4,4,]),'var_decl':([0,3,4,5,22,29,31,32,33,51,124,],[5,5,5,5,31,31,31,31,31,31,31,]),'empty':([0,3,4,5,22,29,31,32,33,51,66,81,107,109,123,124,],[6,6,6,6,34,34,34,34,34,34,89,102,89,89,102,34,]),'type':([0,3,4,5,22,29,31,32,33,51,81,123,124,],[10,10,10,10,35,35,35,35,35,35,100,100,35,]),'body':([22,29,31,32,33,51,124,],[30,54,56,57,58,77,130,]),'method_decl':([22,29,31,32,33,51,124,],[32,32,32,32,32,32,32,]),'statement':([22,29,31,32,33,51,103,104,124,125,],[33,33,33,33,33,33,115,117,33,131,]),'expr':([25,49,52,53,60,61,64,66,96,107,109,112,126,],[41,74,78,79,82,83,85,88,111,88,88,122,132,]),'term':([25,49,52,53,60,61,64,66,68,69,96,107,109,112,126,],[42,42,42,42,42,42,42,42,90,91,42,42,42,42,42,]),'factor':([25,43,45,49,52,53,60,61,64,66,68,69,70,71,96,107,109,112,126,],[44,72,73,44,44,44,44,44,44,44,44,44,92,93,44,44,44,44,44,]),'args':([66,107,109,],[87,119,120,]),'params':([81,123,],[101,129,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,20 +27,57 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> class_decl_list','program',1,'p_program','Parser.py',25),
-  ('class_decl_list -> class_decl class_decl_list','class_decl_list',2,'p_class_decl_list','Parser.py',30),
-  ('class_decl_list -> class_decl','class_decl_list',1,'p_class_decl_list','Parser.py',31),
-  ('class_decl -> CLASS ID EXTENDS ID LBRACE class_body RBRACE','class_decl',7,'p_class_decl','Parser.py',40),
-  ('class_decl -> CLASS ID LBRACE class_body RBRACE','class_decl',5,'p_class_decl','Parser.py',41),
-  ('class_body -> class_body class_member','class_body',2,'p_class_body','Parser.py',50),
-  ('class_body -> class_member','class_body',1,'p_class_body','Parser.py',51),
-  ('class_member -> var_decl','class_member',1,'p_class_member','Parser.py',59),
-  ('var_decl -> type ID SEMICOLON','var_decl',3,'p_var_decl','Parser.py',65),
-  ('var_decl_list -> var_decl_list var_decl','var_decl_list',2,'p_var_decl_list','Parser.py',72),
-  ('var_decl_list -> empty','var_decl_list',1,'p_var_decl_list','Parser.py',73),
-  ('type -> LBRACKET INT RBRACKET','type',3,'p_type','Parser.py',83),
-  ('type -> INT','type',1,'p_type','Parser.py',84),
-  ('type -> BOOLEAN','type',1,'p_type','Parser.py',85),
-  ('type -> ID','type',1,'p_type','Parser.py',86),
-  ('empty -> <empty>','empty',0,'p_empty','Parser.py',94),
+  ('program -> body_program','program',1,'p_program','Parser.py',23),
+  ('body_program -> class_decl body_program','body_program',2,'p_body_program','Parser.py',28),
+  ('body_program -> import_decl body_program','body_program',2,'p_body_program','Parser.py',29),
+  ('body_program -> var_decl body_program','body_program',2,'p_body_program','Parser.py',30),
+  ('body_program -> empty','body_program',1,'p_body_program','Parser.py',31),
+  ('class_decl -> CLASS ID EXTENDS ID LBRACE body RBRACE','class_decl',7,'p_class_decl','Parser.py',37),
+  ('class_decl -> CLASS ID LBRACE body RBRACE','class_decl',5,'p_class_decl','Parser.py',38),
+  ('import_decl -> IMPORT ID DOT ID SEMICOLON','import_decl',5,'p_import_decl','Parser.py',44),
+  ('var_decl -> type ID SEMICOLON','var_decl',3,'p_var_decl','Parser.py',50),
+  ('var_decl -> type ID EQUAL expr SEMICOLON','var_decl',5,'p_var_decl','Parser.py',51),
+  ('method_decl -> type ID LPAREN params RPAREN LBRACE body RBRACE','method_decl',8,'p_method_decl','Parser.py',57),
+  ('params -> type ID','params',2,'p_params','Parser.py',63),
+  ('params -> type ID COMMA params','params',4,'p_params','Parser.py',64),
+  ('params -> empty','params',1,'p_params','Parser.py',65),
+  ('body -> var_decl body','body',2,'p_body','Parser.py',71),
+  ('body -> method_decl body','body',2,'p_body','Parser.py',72),
+  ('body -> statement body','body',2,'p_body','Parser.py',73),
+  ('body -> empty','body',1,'p_body','Parser.py',74),
+  ('type -> INT','type',1,'p_type','Parser.py',80),
+  ('type -> BOOLEAN','type',1,'p_type','Parser.py',81),
+  ('type -> STRING','type',1,'p_type','Parser.py',82),
+  ('type -> ID','type',1,'p_type','Parser.py',83),
+  ('type -> type LSQUARE RSQUARE','type',3,'p_type','Parser.py',84),
+  ('expr -> expr PLUS term','expr',3,'p_expr','Parser.py',90),
+  ('expr -> expr MINUS term','expr',3,'p_expr','Parser.py',91),
+  ('expr -> term','expr',1,'p_expr','Parser.py',92),
+  ('term -> term TIMES factor','term',3,'p_term','Parser.py',98),
+  ('term -> term DIVIDE factor','term',3,'p_term','Parser.py',99),
+  ('term -> factor','term',1,'p_term','Parser.py',100),
+  ('factor -> MINUS factor','factor',2,'p_factor','Parser.py',106),
+  ('factor -> NOT factor','factor',2,'p_factor','Parser.py',107),
+  ('factor -> INT_LITERAL','factor',1,'p_factor','Parser.py',108),
+  ('factor -> BOOLEAN_LITERAL','factor',1,'p_factor','Parser.py',109),
+  ('factor -> STRING_LITERAL','factor',1,'p_factor','Parser.py',110),
+  ('factor -> ID','factor',1,'p_factor','Parser.py',111),
+  ('factor -> ID LSQUARE expr RSQUARE','factor',4,'p_factor','Parser.py',112),
+  ('factor -> ID DOT ID','factor',3,'p_factor','Parser.py',113),
+  ('factor -> ID DOT ID LPAREN args RPAREN','factor',6,'p_factor','Parser.py',114),
+  ('factor -> ID LPAREN args RPAREN','factor',4,'p_factor','Parser.py',115),
+  ('factor -> NEW ID LPAREN RPAREN','factor',4,'p_factor','Parser.py',116),
+  ('factor -> NEW INT LSQUARE expr RSQUARE','factor',5,'p_factor','Parser.py',117),
+  ('factor -> LPAREN expr RPAREN','factor',3,'p_factor','Parser.py',118),
+  ('args -> expr','args',1,'p_args','Parser.py',124),
+  ('args -> expr COMMA args','args',3,'p_args','Parser.py',125),
+  ('args -> empty','args',1,'p_args','Parser.py',126),
+  ('statement -> LBRACE body RBRACE','statement',3,'p_statement','Parser.py',132),
+  ('statement -> IF LPAREN expr RPAREN statement ELSE statement','statement',7,'p_statement','Parser.py',133),
+  ('statement -> IF LPAREN expr RPAREN statement','statement',5,'p_statement','Parser.py',134),
+  ('statement -> WHILE LPAREN expr RPAREN statement','statement',5,'p_statement','Parser.py',135),
+  ('statement -> SYSTEM DOT OUT DOT PRINTLN LPAREN expr RPAREN SEMICOLON','statement',9,'p_statement','Parser.py',136),
+  ('statement -> ID EQUALS expr SEMICOLON','statement',4,'p_statement','Parser.py',137),
+  ('statement -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON','statement',7,'p_statement','Parser.py',138),
+  ('empty -> <empty>','empty',0,'p_empty','Parser.py',143),
 ]

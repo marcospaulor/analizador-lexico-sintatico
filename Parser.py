@@ -15,79 +15,130 @@ class Parser:
         self.tokens = tk.tokens
         self.reserved = tk.reserved
         self.parser = yacc.yacc(module=self)
-        # self.parser.parse(self.file)
-        self.tree = self.parser.parse(self.file)
-        print(self.tree)
-        
-
-    # Estado inicial
+        self.parser.parse(self.file)
+        self.tree = None
+       
+    # Programa
     def p_program(self, p):
-        '''program : class_decl_list'''
-        p[0] = p[1]
+        '''
+            program : body_program
+        '''
 
-    # Lista de classes
-    def p_class_decl_list(self, p):
-        '''class_decl_list : class_decl class_decl_list
-                           | class_decl'''
-        if len(p) == 3:
-            p[0] = [p[1]] + p[2]
-        else:
-            p[0] = [p[1]]
+    def p_body_program(self, p):
+        '''
+            body_program : class_decl body_program
+                | import_decl body_program
+                | var_decl body_program
+                | empty
+        '''
 
     # Declaração de classe
     def p_class_decl(self, p):
         '''
-            class_decl : CLASS ID EXTENDS ID LBRACE class_body RBRACE
-                       | CLASS ID LBRACE class_body RBRACE
+            class_decl : CLASS ID EXTENDS ID LBRACE body RBRACE
+                | CLASS ID LBRACE body RBRACE
         '''
-        if len(p) == 8:
-            p[0] = ('class', p[2], p[4], p[6])
-        else:
-            p[0] = ('class', p[2], None, p[4])
 
-    # Corpo da classe
-    def p_class_body(self, p):
-        '''class_body : class_body class_member
-                      | class_member'''
-        if len(p) == 3:
-            p[0] = [p[1]] + p[2]
-        else:
-            p[0] = [p[1]]
-
-    # Membros da classe
-    def p_class_member(self, p):
-        '''class_member : var_decl
-                        '''
-        p[0] = p[1]
+    # Declaração de import
+    def p_import_decl(self, p):
+        '''
+            import_decl : IMPORT ID DOT ID SEMICOLON
+        '''
 
     # Declaração de variável
     def p_var_decl(self, p):
-        '''var_decl : type ID SEMICOLON'''
-        p[0] = ('var', p[1], p[2])
+        '''
+            var_decl : type ID SEMICOLON
+                | type ID EQUAL expr SEMICOLON
+        '''
 
+    # Declaração de método
+    def p_method_decl(self, p):
+        '''
+            method_decl : type ID LPAREN params RPAREN LBRACE body RBRACE
+        '''
 
-    # Lista de declarações de variáveis
-    def p_var_decl_list(self, p):
-        '''var_decl_list : var_decl_list var_decl
-                         | empty'''
-        if len(p) == 3:
-            p[0] = [p[1]] + p[2]
-        else:
-            p[0] = []
+    # Declaração de parâmetros
+    def p_params(self, p):
+        '''
+            params : type ID
+                | type ID COMMA params
+                | empty
+        '''
 
-    
+    # Declaração de corpo
+    def p_body(self, p):
+        '''
+            body : var_decl body
+                | method_decl body
+                | statement body
+                | empty
+        '''
 
-    # Tipo
+    # Declaração de tipo
     def p_type(self, p):
-        '''type : LBRACKET INT RBRACKET
-                | INT
+        '''
+            type : INT
                 | BOOLEAN
-                | ID'''
-        if len(p) == 4:
-            p[0] = ('array', p[2])
-        else:
-            p[0] = p[1]
+                | STRING
+                | ID
+                | type LSQUARE RSQUARE
+        '''
 
+    # Declaração de expressão
+    def p_expr(self, p):
+        '''
+            expr : expr PLUS term
+                | expr MINUS term
+                | term
+        '''
+
+    # Declaração de termo
+    def p_term(self, p):
+        '''
+            term : term TIMES factor
+                | term DIVIDE factor
+                | factor
+        '''
+
+    # Declaração de fator
+    def p_factor(self, p):
+        '''
+            factor : MINUS factor
+                | NOT factor
+                | INT_LITERAL
+                | BOOLEAN_LITERAL
+                | STRING_LITERAL
+                | ID
+                | ID LSQUARE expr RSQUARE
+                | ID DOT ID
+                | ID DOT ID LPAREN args RPAREN
+                | ID LPAREN args RPAREN
+                | NEW ID LPAREN RPAREN
+                | NEW INT LSQUARE expr RSQUARE
+                | LPAREN expr RPAREN
+        '''
+    
+    # Declaração de argumentos
+    def p_args(self, p):
+        '''
+            args : expr
+                | expr COMMA args
+                | empty
+        '''
+
+    # Declaração de statement
+    def p_statement(self, p):
+        '''
+            statement : LBRACE body RBRACE
+                | IF LPAREN expr RPAREN statement ELSE statement
+                | IF LPAREN expr RPAREN statement
+                | WHILE LPAREN expr RPAREN statement
+                | SYSTEM DOT OUT DOT PRINTLN LPAREN expr RPAREN SEMICOLON
+                | ID EQUALS expr SEMICOLON
+                | ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+        '''
+    
     # empty
     def p_empty(self, p):
         '''empty :'''
@@ -108,6 +159,8 @@ class Parser:
     def parse(self, data):
         return self.parser.parse(data)
     
-
+    def printTree(self):
+        self.tree = self.parser.parse(self.file)
+        print(self.tree)
 
     
