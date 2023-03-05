@@ -36,6 +36,11 @@ class Scanner:
         r'\d+'
         t.value = int(t.value)
         return t
+    
+    def t_STRING_LITERAL(self, t):
+        r'\".*?\"'
+        t.value = t.value[1:-1]
+        return t
 
     # Print caractere e tokens analisados
     def printTokens(self):
@@ -72,19 +77,5 @@ class Scanner:
     t_COMMA = r','
     t_SEMICOLON = r';'
     t_DOT = r'\.'
-    # t_IF = r'if'
-    # t_ELSE = r'else'
-    # t_WHILE = r'while'
-    # t_FOR = r'for'
-    # t_RETURN = r'return'
-    # t_PUBLIC = r'public'
-    # t_PRIVATE = r'private'
-    # t_STATIC = r'static'
-    # t_VOID = r'void'
-    # t_MAIN = r'main'
-    # t_CLASS = r'class'
-    # t_EXTENDS = r'extends'
-    # t_THIS = r'this'
-    # t_NEW = r'new'
-    # t_TRUE = r'true'
-    # t_FALSE = r'false'
+    t_DOUBLE_QUOTE = r'\"'
+    t_QUOTE = r'\''

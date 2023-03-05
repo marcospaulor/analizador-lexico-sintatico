@@ -16,7 +16,6 @@ class Parser:
         self.reserved = tk.reserved
         self.parser = yacc.yacc(module=self)
         self.parser.parse(self.file)
-        self.tree = None
        
     # Programa
     def p_program(self, p):
@@ -37,6 +36,16 @@ class Parser:
         '''
             class_decl : CLASS ID EXTENDS ID LBRACE body RBRACE
                 | CLASS ID LBRACE body RBRACE
+                | access_modifier CLASS ID EXTENDS ID LBRACE body RBRACE
+                | access_modifier CLASS ID LBRACE body RBRACE
+        '''
+
+    # Modificador de acesso
+    def p_access_modifier(self, p):
+        '''
+            access_modifier : PUBLIC
+                | PRIVATE
+                | PROTECTED
         '''
 
     # Declaração de import
@@ -56,6 +65,9 @@ class Parser:
     def p_method_decl(self, p):
         '''
             method_decl : type ID LPAREN params RPAREN LBRACE body RBRACE
+                        | access_modifier type ID LPAREN params RPAREN LBRACE body RBRACE
+                        | type ID LPAREN RPAREN LBRACE body RBRACE
+                        | access_modifier STATIC type ID LPAREN params RPAREN LBRACE body RBRACE
         '''
 
     # Declaração de parâmetros
@@ -82,6 +94,7 @@ class Parser:
                 | BOOLEAN
                 | STRING
                 | ID
+                | VOID
                 | type LSQUARE RSQUARE
         '''
 
@@ -156,11 +169,5 @@ class Parser:
     def build(self, **kwargs):
         self.parser = yacc.yacc(module=self, **kwargs)
 
-    def parse(self, data):
-        return self.parser.parse(data)
-    
-    def printTree(self):
-        self.tree = self.parser.parse(self.file)
-        print(self.tree)
 
     

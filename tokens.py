@@ -8,7 +8,7 @@ reserved = {
     'public': 'PUBLIC',
     'static': 'STATIC',
     'void': 'VOID',
-    'main': 'MAIN',
+    # 'main': 'MAIN',
     'String': 'STRING',
     'extends': 'EXTENDS',
     'return': 'RETURN',
@@ -34,6 +34,6 @@ tokens = [
     'EQUAL', 'EQUALS', 'NOT_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL',
     'AND', 'OR', 'NOT',
     'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQUARE', 'RSQUARE',
-    'FOR', 'PRIVATE', 'COMMA', 'SEMICOLON', 'DOT'
+    'FOR', 'PRIVATE','PROTECTED', 'COMMA', 'SEMICOLON', 'DOT', 'DOUBLE_QUOTE', 'QUOTE', 'MAIN'
     
 ] + list(reserved.values())
