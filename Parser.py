@@ -52,6 +52,7 @@ class Parser:
     def p_import_decl(self, p):
         '''
             import_decl : IMPORT ID DOT ID SEMICOLON
+                | IMPORT ID DOT ID DOT ID SEMICOLON
         '''
 
     # Declaração de variável
@@ -68,6 +69,7 @@ class Parser:
                         | access_modifier type ID LPAREN params RPAREN LBRACE body RBRACE
                         | type ID LPAREN RPAREN LBRACE body RBRACE
                         | access_modifier STATIC type ID LPAREN params RPAREN LBRACE body RBRACE
+                        | PUBLIC STATIC VOID MAIN LPAREN params RPAREN LBRACE body RBRACE
         '''
 
     # Declaração de parâmetros
@@ -103,6 +105,14 @@ class Parser:
         '''
             expr : expr PLUS term
                 | expr MINUS term
+                | expr AND term
+                | expr OR term
+                | expr EQUALS term
+                | expr NOT_EQUALS term
+                | expr LESS_THAN term
+                | expr LESS_THAN_OR_EQUAL term
+                | expr GREATER_THAN term
+                | expr GREATER_THAN_OR_EQUAL term
                 | term
         '''
 
@@ -120,7 +130,8 @@ class Parser:
             factor : MINUS factor
                 | NOT factor
                 | INT_LITERAL
-                | BOOLEAN_LITERAL
+                | TRUE
+                | FALSE
                 | STRING_LITERAL
                 | ID
                 | ID LSQUARE expr RSQUARE
@@ -150,6 +161,21 @@ class Parser:
                 | SYSTEM DOT OUT DOT PRINTLN LPAREN expr RPAREN SEMICOLON
                 | ID EQUALS expr SEMICOLON
                 | ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+                | ID DOT ID EQUALS expr SEMICOLON
+                | ID DOT ID LPAREN args RPAREN SEMICOLON
+                | ID LPAREN args RPAREN SEMICOLON
+                | RETURN expr SEMICOLON
+                | RETURN SEMICOLON
+                | ID PLUS_PLUS SEMICOLON
+                | ID MINUS_MINUS SEMICOLON
+                | PLUS_PLUS ID SEMICOLON
+                | MINUS_MINUS ID SEMICOLON
+                | ID PLUS_PLUS
+                | ID MINUS_MINUS
+                | PLUS_PLUS ID
+                | MINUS_MINUS ID
+                | THIS DOT ID EQUAL expr SEMICOLON
+                | THIS DOT ID LPAREN args RPAREN SEMICOLON
         '''
     
     # empty

@@ -42,6 +42,18 @@ class Scanner:
         t.value = t.value[1:-1]
         return t
 
+    # identificar números reais
+    def t_FLOAT_LITERAL(self, t):
+        r'\d+\.\d+'
+        t.value = float(t.value)
+        return t
+    
+    #  identificar booleanos
+    def t_BOOLEAN_LITERAL(self, t): 
+        r'(true|false)'
+        t.value = True if t.value == 'true' else False
+        return t
+
     # Print caractere e tokens analisados
     def printTokens(self):
         while True:
@@ -77,5 +89,7 @@ class Scanner:
     t_COMMA = r','
     t_SEMICOLON = r';'
     t_DOT = r'\.'
-    t_DOUBLE_QUOTE = r'\"'
-    t_QUOTE = r'\''
+    t_PLUS_PLUS = r'\+\+'
+    t_MINUS_MINUS = r'--'
+    t_TRUE = r'true'
+    t_FALSE = r'false'
