@@ -1,0 +1,597 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AND
+    AND_ASSIGN
+    ARROW
+    ASSERT
+    ASSIGN
+    AT
+    BACKSPACE
+    BELL
+    BITWISE_AND
+    BITWISE_COMPLEMENT
+    BITWISE_NOT
+    BITWISE_OR
+    BITWISE_XOR
+    BREAK
+    BYTE
+    CARRIAGE_RETURN
+    CASE
+    CATCH
+    CHAR
+    CHARACTER
+    COLON
+    COMMA
+    COMMENT
+    CONST
+    CONTINUE
+    DECREMENT
+    DEFAULT
+    DIVIDE
+    DIVIDE_ASSIGN
+    DO
+    DOT
+    DOUBLE
+    DOUBLE_COLON
+    ELLIPSIS
+    ELSE
+    ENUM
+    EOF
+    EQ
+    EQ_ASSIGN
+    ERROR
+    ESCAPE
+    FALSE
+    FINAL
+    FINALLY
+    FLOAT
+    FOR
+    FORM_FEED
+    GE
+    GOTO
+    GT
+    IF
+    IMPLEMENTS
+    IMPORT
+    INCREMENT
+    INSTANCEOF
+    INTEGER
+    INTERFACE
+    LAMBDA
+    LE
+    LEFT_SHIFT
+    LEFT_SHIFT_ASSIGN
+    LENGTH
+    LINE_COMMENT
+    LONG
+    LPAREN
+    LT
+    MINUS
+    MINUS_ASSIGN
+    MINUS_MINUS
+    MOD
+    MOD_ASSIGN
+    NATIVE
+    NE
+    NEW
+    NEWLINE
+    NON_SEALED
+    NOT
+    NULL
+    OR
+    OR_ASSIGN
+    OUT
+    PACKAGE
+    PERMITS
+    PLUS
+    PLUS_ASSIGN
+    PLUS_PLUS
+    PRINTLN
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    QUESTION_MARK
+    RECORD
+    RETURN
+    RIGHT_SHIFT
+    RIGHT_SHIFT_ASSIGN
+    RIGHT_SHIFT_UNSIGNED
+    RIGHT_SHIFT_UNSIGNED_ASSIGN
+    RPAREN
+    SEALED
+    SHORT
+    SPACE
+    STATIC
+    STRICTFP
+    STRING
+    SUPER
+    SWITCH
+    SYNCHRONIZED
+    SYSTEM
+    TAB
+    THIS
+    THROW
+    THROWS
+    TILDE
+    TIMES
+    TIMES_ASSIGN
+    TRANSIENT
+    TRUE
+    TRY
+    TYPE
+    UNDERSCORE
+    UNSIGNED_RIGHT_SHIFT
+    UNSIGNED_RIGHT_SHIFT_ASSIGN
+    VAR
+    VERTICAL_TAB
+    VOID
+    VOLATILE
+    WHILE
+    XOR
+    XOR_ASSIGN
+    YIELD
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> class_decl_list
+Rule 2     class_decl_list -> class_decl class_decl_list
+Rule 3     class_decl_list -> class_decl
+Rule 4     class_decl -> CLASS ID EXTENDS ID LBRACE class_body RBRACE
+Rule 5     class_decl -> CLASS ID LBRACE class_body RBRACE
+Rule 6     class_body -> class_body class_member
+Rule 7     class_body -> class_member
+Rule 8     class_member -> var_decl
+Rule 9     var_decl -> type ID SEMICOLON
+Rule 10    var_decl_list -> var_decl_list var_decl
+Rule 11    var_decl_list -> empty
+Rule 12    type -> LBRACKET INT RBRACKET
+Rule 13    type -> INT
+Rule 14    type -> BOOLEAN
+Rule 15    type -> ID
+Rule 16    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 
+AND_ASSIGN           : 
+ARROW                : 
+ASSERT               : 
+ASSIGN               : 
+AT                   : 
+BACKSPACE            : 
+BELL                 : 
+BITWISE_AND          : 
+BITWISE_COMPLEMENT   : 
+BITWISE_NOT          : 
+BITWISE_OR           : 
+BITWISE_XOR          : 
+BOOLEAN              : 14
+BREAK                : 
+BYTE                 : 
+CARRIAGE_RETURN      : 
+CASE                 : 
+CATCH                : 
+CHAR                 : 
+CHARACTER            : 
+CLASS                : 4 5
+COLON                : 
+COMMA                : 
+COMMENT              : 
+CONST                : 
+CONTINUE             : 
+DECREMENT            : 
+DEFAULT              : 
+DIVIDE               : 
+DIVIDE_ASSIGN        : 
+DO                   : 
+DOT                  : 
+DOUBLE               : 
+DOUBLE_COLON         : 
+ELLIPSIS             : 
+ELSE                 : 
+ENUM                 : 
+EOF                  : 
+EQ                   : 
+EQ_ASSIGN            : 
+ERROR                : 
+ESCAPE               : 
+EXTENDS              : 4
+FALSE                : 
+FINAL                : 
+FINALLY              : 
+FLOAT                : 
+FOR                  : 
+FORM_FEED            : 
+GE                   : 
+GOTO                 : 
+GT                   : 
+ID                   : 4 4 5 9 15
+IF                   : 
+IMPLEMENTS           : 
+IMPORT               : 
+INCREMENT            : 
+INSTANCEOF           : 
+INT                  : 12 13
+INTEGER              : 
+INTERFACE            : 
+LAMBDA               : 
+LBRACE               : 4 5
+LBRACKET             : 12
+LE                   : 
+LEFT_SHIFT           : 
+LEFT_SHIFT_ASSIGN    : 
+LENGTH               : 
+LINE_COMMENT         : 
+LONG                 : 
+LPAREN               : 
+LT                   : 
+MINUS                : 
+MINUS_ASSIGN         : 
+MINUS_MINUS          : 
+MOD                  : 
+MOD_ASSIGN           : 
+NATIVE               : 
+NE                   : 
+NEW                  : 
+NEWLINE              : 
+NON_SEALED           : 
+NOT                  : 
+NULL                 : 
+OR                   : 
+OR_ASSIGN            : 
+OUT                  : 
+PACKAGE              : 
+PERMITS              : 
+PLUS                 : 
+PLUS_ASSIGN          : 
+PLUS_PLUS            : 
+PRINTLN              : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 
+QUESTION_MARK        : 
+RBRACE               : 4 5
+RBRACKET             : 12
+RECORD               : 
+RETURN               : 
+RIGHT_SHIFT          : 
+RIGHT_SHIFT_ASSIGN   : 
+RIGHT_SHIFT_UNSIGNED : 
+RIGHT_SHIFT_UNSIGNED_ASSIGN : 
+RPAREN               : 
+SEALED               : 
+SEMICOLON            : 9
+SHORT                : 
+SPACE                : 
+STATIC               : 
+STRICTFP             : 
+STRING               : 
+SUPER                : 
+SWITCH               : 
+SYNCHRONIZED         : 
+SYSTEM               : 
+TAB                  : 
+THIS                 : 
+THROW                : 
+THROWS               : 
+TILDE                : 
+TIMES                : 
+TIMES_ASSIGN         : 
+TRANSIENT            : 
+TRUE                 : 
+TRY                  : 
+TYPE                 : 
+UNDERSCORE           : 
+UNSIGNED_RIGHT_SHIFT : 
+UNSIGNED_RIGHT_SHIFT_ASSIGN : 
+VAR                  : 
+VERTICAL_TAB         : 
+VOID                 : 
+VOLATILE             : 
+WHILE                : 
+XOR                  : 
+XOR_ASSIGN           : 
+YIELD                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+class_body           : 4 5 6
+class_decl           : 2 3
+class_decl_list      : 1 2
+class_member         : 6 7
+empty                : 11
+program              : 0
+type                 : 9
+var_decl             : 8 10
+var_decl_list        : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . class_decl_list
+    (2) class_decl_list -> . class_decl class_decl_list
+    (3) class_decl_list -> . class_decl
+    (4) class_decl -> . CLASS ID EXTENDS ID LBRACE class_body RBRACE
+    (5) class_decl -> . CLASS ID LBRACE class_body RBRACE
+
+    CLASS           shift and go to state 4
+
+    program                        shift and go to state 1
+    class_decl_list                shift and go to state 2
+    class_decl                     shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> class_decl_list .
+
+    $end            reduce using rule 1 (program -> class_decl_list .)
+
+
+state 3
+
+    (2) class_decl_list -> class_decl . class_decl_list
+    (3) class_decl_list -> class_decl .
+    (2) class_decl_list -> . class_decl class_decl_list
+    (3) class_decl_list -> . class_decl
+    (4) class_decl -> . CLASS ID EXTENDS ID LBRACE class_body RBRACE
+    (5) class_decl -> . CLASS ID LBRACE class_body RBRACE
+
+    $end            reduce using rule 3 (class_decl_list -> class_decl .)
+    CLASS           shift and go to state 4
+
+    class_decl                     shift and go to state 3
+    class_decl_list                shift and go to state 5
+
+state 4
+
+    (4) class_decl -> CLASS . ID EXTENDS ID LBRACE class_body RBRACE
+    (5) class_decl -> CLASS . ID LBRACE class_body RBRACE
+
+    ID              shift and go to state 6
+
+
+state 5
+
+    (2) class_decl_list -> class_decl class_decl_list .
+
+    $end            reduce using rule 2 (class_decl_list -> class_decl class_decl_list .)
+
+
+state 6
+
+    (4) class_decl -> CLASS ID . EXTENDS ID LBRACE class_body RBRACE
+    (5) class_decl -> CLASS ID . LBRACE class_body RBRACE
+
+    EXTENDS         shift and go to state 7
+    LBRACE          shift and go to state 8
+
+
+state 7
+
+    (4) class_decl -> CLASS ID EXTENDS . ID LBRACE class_body RBRACE
+
+    ID              shift and go to state 9
+
+
+state 8
+
+    (5) class_decl -> CLASS ID LBRACE . class_body RBRACE
+    (6) class_body -> . class_body class_member
+    (7) class_body -> . class_member
+    (8) class_member -> . var_decl
+    (9) var_decl -> . type ID SEMICOLON
+    (12) type -> . LBRACKET INT RBRACKET
+    (13) type -> . INT
+    (14) type -> . BOOLEAN
+    (15) type -> . ID
+
+    LBRACKET        shift and go to state 15
+    INT             shift and go to state 16
+    BOOLEAN         shift and go to state 17
+    ID              shift and go to state 10
+
+    class_body                     shift and go to state 11
+    class_member                   shift and go to state 12
+    var_decl                       shift and go to state 13
+    type                           shift and go to state 14
+
+state 9
+
+    (4) class_decl -> CLASS ID EXTENDS ID . LBRACE class_body RBRACE
+
+    LBRACE          shift and go to state 18
+
+
+state 10
+
+    (15) type -> ID .
+
+    ID              reduce using rule 15 (type -> ID .)
+
+
+state 11
+
+    (5) class_decl -> CLASS ID LBRACE class_body . RBRACE
+    (6) class_body -> class_body . class_member
+    (8) class_member -> . var_decl
+    (9) var_decl -> . type ID SEMICOLON
+    (12) type -> . LBRACKET INT RBRACKET
+    (13) type -> . INT
+    (14) type -> . BOOLEAN
+    (15) type -> . ID
+
+    RBRACE          shift and go to state 19
+    LBRACKET        shift and go to state 15
+    INT             shift and go to state 16
+    BOOLEAN         shift and go to state 17
+    ID              shift and go to state 10
+
+    class_member                   shift and go to state 20
+    var_decl                       shift and go to state 13
+    type                           shift and go to state 14
+
+state 12
+
+    (7) class_body -> class_member .
+
+    RBRACE          reduce using rule 7 (class_body -> class_member .)
+    LBRACKET        reduce using rule 7 (class_body -> class_member .)
+    INT             reduce using rule 7 (class_body -> class_member .)
+    BOOLEAN         reduce using rule 7 (class_body -> class_member .)
+    ID              reduce using rule 7 (class_body -> class_member .)
+
+
+state 13
+
+    (8) class_member -> var_decl .
+
+    RBRACE          reduce using rule 8 (class_member -> var_decl .)
+    LBRACKET        reduce using rule 8 (class_member -> var_decl .)
+    INT             reduce using rule 8 (class_member -> var_decl .)
+    BOOLEAN         reduce using rule 8 (class_member -> var_decl .)
+    ID              reduce using rule 8 (class_member -> var_decl .)
+
+
+state 14
+
+    (9) var_decl -> type . ID SEMICOLON
+
+    ID              shift and go to state 21
+
+
+state 15
+
+    (12) type -> LBRACKET . INT RBRACKET
+
+    INT             shift and go to state 22
+
+
+state 16
+
+    (13) type -> INT .
+
+    ID              reduce using rule 13 (type -> INT .)
+
+
+state 17
+
+    (14) type -> BOOLEAN .
+
+    ID              reduce using rule 14 (type -> BOOLEAN .)
+
+
+state 18
+
+    (4) class_decl -> CLASS ID EXTENDS ID LBRACE . class_body RBRACE
+    (6) class_body -> . class_body class_member
+    (7) class_body -> . class_member
+    (8) class_member -> . var_decl
+    (9) var_decl -> . type ID SEMICOLON
+    (12) type -> . LBRACKET INT RBRACKET
+    (13) type -> . INT
+    (14) type -> . BOOLEAN
+    (15) type -> . ID
+
+    LBRACKET        shift and go to state 15
+    INT             shift and go to state 16
+    BOOLEAN         shift and go to state 17
+    ID              shift and go to state 10
+
+    class_body                     shift and go to state 23
+    class_member                   shift and go to state 12
+    var_decl                       shift and go to state 13
+    type                           shift and go to state 14
+
+state 19
+
+    (5) class_decl -> CLASS ID LBRACE class_body RBRACE .
+
+    CLASS           reduce using rule 5 (class_decl -> CLASS ID LBRACE class_body RBRACE .)
+    $end            reduce using rule 5 (class_decl -> CLASS ID LBRACE class_body RBRACE .)
+
+
+state 20
+
+    (6) class_body -> class_body class_member .
+
+    RBRACE          reduce using rule 6 (class_body -> class_body class_member .)
+    LBRACKET        reduce using rule 6 (class_body -> class_body class_member .)
+    INT             reduce using rule 6 (class_body -> class_body class_member .)
+    BOOLEAN         reduce using rule 6 (class_body -> class_body class_member .)
+    ID              reduce using rule 6 (class_body -> class_body class_member .)
+
+
+state 21
+
+    (9) var_decl -> type ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 24
+
+
+state 22
+
+    (12) type -> LBRACKET INT . RBRACKET
+
+    RBRACKET        shift and go to state 25
+
+
+state 23
+
+    (4) class_decl -> CLASS ID EXTENDS ID LBRACE class_body . RBRACE
+    (6) class_body -> class_body . class_member
+    (8) class_member -> . var_decl
+    (9) var_decl -> . type ID SEMICOLON
+    (12) type -> . LBRACKET INT RBRACKET
+    (13) type -> . INT
+    (14) type -> . BOOLEAN
+    (15) type -> . ID
+
+    RBRACE          shift and go to state 26
+    LBRACKET        shift and go to state 15
+    INT             shift and go to state 16
+    BOOLEAN         shift and go to state 17
+    ID              shift and go to state 10
+
+    class_member                   shift and go to state 20
+    var_decl                       shift and go to state 13
+    type                           shift and go to state 14
+
+state 24
+
+    (9) var_decl -> type ID SEMICOLON .
+
+    RBRACE          reduce using rule 9 (var_decl -> type ID SEMICOLON .)
+    LBRACKET        reduce using rule 9 (var_decl -> type ID SEMICOLON .)
+    INT             reduce using rule 9 (var_decl -> type ID SEMICOLON .)
+    BOOLEAN         reduce using rule 9 (var_decl -> type ID SEMICOLON .)
+    ID              reduce using rule 9 (var_decl -> type ID SEMICOLON .)
+
+
+state 25
+
+    (12) type -> LBRACKET INT RBRACKET .
+
+    ID              reduce using rule 12 (type -> LBRACKET INT RBRACKET .)
+
+
+state 26
+
+    (4) class_decl -> CLASS ID EXTENDS ID LBRACE class_body RBRACE .
+
+    CLASS           reduce using rule 4 (class_decl -> CLASS ID EXTENDS ID LBRACE class_body RBRACE .)
+    $end            reduce using rule 4 (class_decl -> CLASS ID EXTENDS ID LBRACE class_body RBRACE .)
+
