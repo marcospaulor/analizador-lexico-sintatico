@@ -24,7 +24,6 @@ public class Test {
     }
 }
 
-// Este trecho é aceito pelo analisador léxico e sintático
 int a = 1;
 
 public class Test{
