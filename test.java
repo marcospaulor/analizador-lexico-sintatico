@@ -5,6 +5,8 @@ public class Test {
     int a = 1;
     boolean boleano = true;
     boolean boleano2 = false;
+    
+
     public static void main(String[] args) {
         int soma = 1 + 1;
         // boolean boleano = true;
@@ -20,6 +22,10 @@ public class Test {
         while (soma < 10 || boleano == true) {
             System.out.println("Soma é menor que 10");
             soma++;
+        }
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Valor de i: " + i);
         }
     }
 }

@@ -151,6 +151,28 @@ class Parser:
                 | empty
         '''
 
+    # Laço for
+    def p_for_loop(self, p):
+        '''
+            for_loop : FOR LPAREN var_decl expr SEMICOLON assign_expr RPAREN statement
+                    | FOR LPAREN SEMICOLON expr SEMICOLON assign_expr RPAREN statement
+                    | FOR LPAREN var_decl expr SEMICOLON increment_expr RPAREN statement
+                    | FOR LPAREN SEMICOLON expr SEMICOLON increment_expr RPAREN statement
+        '''
+
+    def p_assign_expr(self, p):
+        '''
+            assign_expr : ID EQUALS expr
+        '''
+
+    def p_increment_expr(self, p):
+        '''
+            increment_expr : ID PLUS_PLUS
+                        | ID MINUS_MINUS
+                        | PLUS_PLUS ID
+                        | MINUS_MINUS ID
+        '''
+
     # Declaração de statement
     def p_statement(self, p):
         '''
@@ -170,12 +192,9 @@ class Parser:
                 | ID MINUS_MINUS SEMICOLON
                 | PLUS_PLUS ID SEMICOLON
                 | MINUS_MINUS ID SEMICOLON
-                | ID PLUS_PLUS
-                | ID MINUS_MINUS
-                | PLUS_PLUS ID
-                | MINUS_MINUS ID
                 | THIS DOT ID EQUAL expr SEMICOLON
                 | THIS DOT ID LPAREN args RPAREN SEMICOLON
+                | for_loop
         '''
     
     # empty
@@ -194,6 +213,3 @@ class Parser:
 
     def build(self, **kwargs):
         self.parser = yacc.yacc(module=self, **kwargs)
-
-
-    

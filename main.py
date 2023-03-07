@@ -18,7 +18,7 @@ def main():
         print("Analisando código...")
         # first we call the Scanner
         scanner = sc.Scanner(file)
-        # scanner.printTokens()
+        scanner.printTokens()
         print("Código possui todos os tokens válidos!")
         # if the Scanner is successful, we call the Parser
         parser = ps.Parser(file)

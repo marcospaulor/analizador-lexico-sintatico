@@ -24,7 +24,8 @@ reserved = {
     'new': 'NEW',
     'true': 'TRUE',
     'false': 'FALSE',
-    'import': 'IMPORT'
+    'import': 'IMPORT',
+    'for': 'FOR',
 }
 
 # All tokens in Java
@@ -34,6 +35,6 @@ tokens = [
     'EQUAL', 'EQUALS', 'NOT_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL',
     'AND', 'OR', 'NOT',
     'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQUARE', 'RSQUARE',
-    'FOR', 'PRIVATE','PROTECTED', 'COMMA', 'SEMICOLON', 'DOT', 'PLUS_PLUS', 'MINUS_MINUS'
+    'PRIVATE','PROTECTED', 'COMMA', 'SEMICOLON', 'DOT', 'PLUS_PLUS', 'MINUS_MINUS'
     
 ] + list(reserved.values())
