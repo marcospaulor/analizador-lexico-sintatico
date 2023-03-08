@@ -28,7 +28,16 @@ class Scanner:
     # identificar tokens
     def t_ID(self, t):
         r'[a-zA-Z_][a-zA-Z0-9_]*'
-        t.type = self.reserved.get(t.value, 'ID')
+        # verificar se é palavra reservada
+        if(t.value in self.reserved):
+            t.type = self.reserved[t.value]
+        else:
+            # verifica se é um token válido
+            if(t.value in self.tokens):
+                t.type = t.value
+            else:
+                # chamada de erro
+                self.t_error(t)
         return t
     
     # identificar números inteiros
@@ -62,8 +71,10 @@ class Scanner:
             print(tok)
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        # chamada de erro mostrando caractere e linha
+        print("Illegal character '%s' at line %d" % (t.value[0], t.lexer.lineno))
         t.lexer.skip(1)
+        exit()
 
     # Regular expression rules for simple tokens
     t_PLUS = r'\+'
