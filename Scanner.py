@@ -36,8 +36,7 @@ class Scanner:
             if(t.value in self.tokens):
                 t.type = t.value
             else:
-                # chamada de erro
-                self.t_error(t)
+                t.type = 'ID'
         return t
     
     # identificar números inteiros
