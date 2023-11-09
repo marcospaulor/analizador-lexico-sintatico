@@ -1,4 +1,4 @@
-# Scanner is a lexical analyzer for the Java language. It is used to tokenize the input file and return a list of tokens.
+ # Scanner is a lexical analyzer for the Java language. It is used to tokenize the input file and return a list of tokens.
 import ply.lex as lex
 import re
 import tokens as tk
